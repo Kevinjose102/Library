@@ -143,15 +143,34 @@ dialog[open] > div > input {
     overflow-y: scroll;
     scrollbar-width: none;
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
     padding: 30px;
 }
 
 .book{
-    background-color: gray;
-    max-width: 400px;
+    background-color: rgba(215, 215, 215, 0.609);
+    min-height: 300px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    gap: 20px;
+    padding: 25px;
+    font-size: 26px;
+}
+
+.book > div{
+    color: black;
+}
+
+.book-button{
+    height: 35px;
+    width: 90%;
+    border: none;
 }
 
 .footer{

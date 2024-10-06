@@ -16,6 +16,7 @@ let inputTitle;
 let inputAuthor;
 let inputPages;
 let inputRead;
+let flag = 0;
 
 const myLibrary = [];
 let count = 0;
@@ -32,10 +33,20 @@ addBookButton.addEventListener("click", () => {
     dialog.showModal();
 })
 
+readButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        readButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active")
+        inputRead = button.id
+        flag = 1;
+    })
+})
+
 submitButton.addEventListener("click", (e) =>{
     e.preventDefault()
 
     //all inputs are not filled
+    //TODO COULD BE WRITTEN IN A BETTER MANNER MAYBE
     if(title.value == "" ||  author.value == "" || pages.value == ""){
         if(title.value == ""){
             error[0].textContent = "*this is a required field"
@@ -61,6 +72,8 @@ submitButton.addEventListener("click", (e) =>{
     //to check if a book is already present in the library or not
     else if(myLibrary.some(book => book.title === title.value)){
         error[0].textContent = "*this book already exists"
+        error[1].textContent = ""
+        error[2].textContent = ""
     }
     else{
         //getting the values
@@ -79,8 +92,6 @@ submitButton.addEventListener("click", (e) =>{
         const book = document.createElement("div");
         book.classList.add("book")
 
-        //TODO ADD CLASSES TO THE INFO IN THE BOOK DIV
-
         const bookTitle = document.createElement("div");
         bookTitle.textContent = inputTitle
 
@@ -90,13 +101,31 @@ submitButton.addEventListener("click", (e) =>{
         const bookPages = document.createElement("div");
         bookPages.textContent = inputPages
 
+        const readBtn = document.createElement("button")
+        readBtn.classList.add("book-button")
+        if(flag == 0){
+            readBtn.textContent = "Not Read"
+        }
+        else{
+            if(inputRead == "read"){
+                readBtn.textContent = "Read"
+            }
+            else if(inputRead == "not-read"){
+                readBtn.textContent = "Not Read"
+            }
+        }
+
+        const removeButton = document.createElement("button")
+        removeButton.textContent = "Remove"
+        removeButton.classList.add("book-button")
         //putting the new book tile on the BOOKGRID
         bookGrid.appendChild(book)
 
         book.appendChild(bookTitle)
         book.appendChild(bookAuthor)
         book.appendChild(bookPages)
-
+        book.appendChild(readBtn)
+        book.appendChild(removeButton)
 
         //to clear the inputs when submitted
         title.value = ""
@@ -122,10 +151,3 @@ cancelButton.addEventListener("click", () =>{
     dialog.close()
 })
 
-readButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        readButtons.forEach(btn => btn.classList.remove("active"));
-        button.classList.add("active")
-        inputRead = button.id
-    })
-})
