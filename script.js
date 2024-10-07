@@ -15,7 +15,7 @@ const error = document.querySelectorAll(".error")
 let inputTitle;
 let inputAuthor;
 let inputPages;
-let inputRead;
+let inputRead = "not-read";
 let flag = 0;
 
 const myLibrary = [];
@@ -44,7 +44,7 @@ readButtons.forEach(button => {
 
 submitButton.addEventListener("click", (e) =>{
     e.preventDefault()
-
+    flag = 0
     //all inputs are not filled
     //TODO COULD BE WRITTEN IN A BETTER MANNER MAYBE
     if(title.value == "" ||  author.value == "" || pages.value == ""){
@@ -80,8 +80,9 @@ submitButton.addEventListener("click", (e) =>{
         inputTitle = title.value
         inputAuthor = author.value
         inputPages = pages.value
-        //inputRead is alread read from the readButon addeventlistener at the bottom
 
+        //inputRead is alread read from the readButon addeventlistener
+        console.log(flag)
         //adding the new book to the myLibrary array 
         const dummyBook = new Book(inputTitle, inputAuthor, inputPages, inputRead)
         myLibrary[count] = dummyBook;
@@ -93,7 +94,11 @@ submitButton.addEventListener("click", (e) =>{
         book.classList.add("book")
 
         const bookTitle = document.createElement("div");
-        bookTitle.textContent = inputTitle
+        bookTitle.textContent =  inputTitle
+        bookTitle.classList.add("book-title")
+        inputTitle = inputTitle.replaceAll(" ","-")
+        console.log(inputTitle)
+        book.classList.add(inputTitle)
 
         const bookAuthor = document.createElement("div")
         bookAuthor.textContent = inputAuthor
@@ -105,19 +110,27 @@ submitButton.addEventListener("click", (e) =>{
         readBtn.classList.add("book-button")
         if(flag == 0){
             readBtn.textContent = "Not Read"
+            readBtn.style.backgroundColor = "rgba(219, 219, 37, 0.39)"
         }
         else{
             if(inputRead == "read"){
                 readBtn.textContent = "Read"
+                readBtn.style.backgroundColor = "rgba(64, 210, 64, 0.33)"
             }
             else if(inputRead == "not-read"){
                 readBtn.textContent = "Not Read"
+                readBtn.style.backgroundColor = "rgba(219, 219, 37, 0.39)"
             }
         }
+        readBtn.addEventListener("click", () => toggleStatus(bookTitle.textContent.replaceAll(" ","-")))
 
         const removeButton = document.createElement("button")
         removeButton.textContent = "Remove"
         removeButton.classList.add("book-button")
+        removeButton.style.backgroundColor = "rgba(239, 27, 27, 0.33)";
+
+        removeButton.addEventListener("click", () => removeBook(book))
+
         //putting the new book tile on the BOOKGRID
         bookGrid.appendChild(book)
 
@@ -151,3 +164,23 @@ cancelButton.addEventListener("click", () =>{
     dialog.close()
 })
 
+function toggleStatus(inputTitle){
+    const toggleButton = document.querySelector("." + inputTitle + " > .book-button")
+    if(toggleButton.textContent == "Read"){
+        toggleButton.textContent = "Not Read"
+        toggleButton.style.backgroundColor = "rgba(219, 219, 37, 0.39)"
+        let book = myLibrary.find(b => b.title === inputTitle)
+        if(book){
+            book.read = "not-read"
+        }
+    }
+    else{
+        toggleButton.textContent = "Read"
+        toggleButton.style.backgroundColor = "rgba(64, 210, 64, 0.33)"
+        let book = myLibrary.find(b => b.title === inputTitle)
+        if(book){
+            book.read = "read"
+        }
+    }
+    console.log(myLibrary)
+}

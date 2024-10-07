@@ -161,6 +161,7 @@ dialog[open] > div > input {
     gap: 20px;
     padding: 25px;
     font-size: 26px;
+    font-family: "Merriweather Sans";
 }
 
 .book > div{
@@ -168,9 +169,23 @@ dialog[open] > div > input {
 }
 
 .book-button{
-    height: 35px;
+    padding: 5px;
     width: 90%;
     border: none;
+    font-size: 26px;
+    font-family: "Merriweather Sans";
+    border-radius: 10px;
+}
+
+.book-button:hover{
+    cursor: pointer;
+}
+
+.book-title{
+    width: 90%;
+    text-align: center;
+    padding: 7px;
+    border-radius: 10px;
 }
 
 .footer{
