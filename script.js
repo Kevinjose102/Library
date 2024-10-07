@@ -89,7 +89,6 @@ submitButton.addEventListener("click", (e) =>{
         const dummyBook = new Book(inputTitle, inputAuthor, inputPages, inputRead)
         myLibrary[count] = dummyBook;
         count = count + 1
-        console.log(myLibrary)
 
         //creating the new book tile in the grid
         const book = document.createElement("div");
@@ -110,10 +109,19 @@ submitButton.addEventListener("click", (e) =>{
         const readBtn = document.createElement("button")
         readBtn.classList.add("book-button")
         readBtn.classList.add("status-button")
+
+
         if(flag == 0){
+            //change the value in myLibrary too
+            myLibrary.forEach((book) => {
+                if(book.title == inputTitle){
+                    book.read = "not-read"
+                }
+            })
             readBtn.textContent = "Not Read"
             readBtn.style.backgroundColor = "rgba(219, 219, 37, 0.43)"
         }
+
         else{
             if(inputRead == "read"){
                 readBtn.textContent = "Read"
@@ -151,6 +159,8 @@ submitButton.addEventListener("click", (e) =>{
         })
         readButtons.forEach(btn => btn.classList.remove("active"));
         dialog.close()
+
+        console.log(myLibrary)
     }
 })
 
@@ -184,6 +194,7 @@ function toggleStatus(inputTitle){
             book.read = "read"
         }
     }
+    console.log(myLibrary)
 }
 
 
