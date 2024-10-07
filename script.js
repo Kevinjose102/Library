@@ -30,6 +30,7 @@ function Book(title, author, pages, read){
 
 addBookButton.addEventListener("click", () => {
     readButtons[1].classList.add("active")
+    flag = 0;
     dialog.showModal();
 })
 
@@ -44,7 +45,6 @@ readButtons.forEach(button => {
 
 submitButton.addEventListener("click", (e) =>{
     e.preventDefault()
-    flag = 0
     //all inputs are not filled
     //TODO COULD BE WRITTEN IN A BETTER MANNER MAYBE
     if(title.value == "" ||  author.value == "" || pages.value == ""){
@@ -75,6 +75,9 @@ submitButton.addEventListener("click", (e) =>{
         error[1].textContent = ""
         error[2].textContent = ""
     }
+    else if(!isNaN(title.value)){
+        error[0].textContent = "*enter a valid title"
+    }
     else{
         //getting the values
         inputTitle = title.value
@@ -82,7 +85,6 @@ submitButton.addEventListener("click", (e) =>{
         inputPages = pages.value
 
         //inputRead is alread read from the readButon addeventlistener
-        console.log(flag)
         //adding the new book to the myLibrary array 
         const dummyBook = new Book(inputTitle, inputAuthor, inputPages, inputRead)
         myLibrary[count] = dummyBook;
@@ -97,7 +99,6 @@ submitButton.addEventListener("click", (e) =>{
         bookTitle.textContent =  inputTitle
         bookTitle.classList.add("book-title")
         inputTitle = inputTitle.replaceAll(" ","-")
-        console.log(inputTitle)
         book.classList.add(inputTitle)
 
         const bookAuthor = document.createElement("div")
@@ -123,7 +124,6 @@ submitButton.addEventListener("click", (e) =>{
             }
         }
         readBtn.addEventListener("click", () => toggleStatus(bookTitle.textContent.replaceAll(" ","-")))
-
         const removeButton = document.createElement("button")
         removeButton.textContent = "Remove"
         removeButton.classList.add("book-button")
