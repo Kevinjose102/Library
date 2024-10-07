@@ -213,3 +213,28 @@ a:hover{
 .github{
     transform: scale(0.4);
 }
+
+@media only screen and (max-width: 430px){
+    .svg{
+        display: none;
+    }
+    html{
+        overflow: hidden;
+    }
+    .header{
+        padding: 0;
+        width: 100vw;
+    }
+    h2{
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        width: 100vw;
+    }
+    .container{
+        width: 100vw;
+    }
+    .footer{
+        width: 100vw;
+    }
+}
