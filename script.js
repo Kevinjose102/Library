@@ -18,7 +18,7 @@ let inputPages;
 let inputRead = "not-read";
 let flag = 0;
 
-const myLibrary = [];
+let myLibrary = [];
 let count = 0;
 
 function Book(title, author, pages, read){
@@ -109,27 +109,29 @@ submitButton.addEventListener("click", (e) =>{
 
         const readBtn = document.createElement("button")
         readBtn.classList.add("book-button")
+        readBtn.classList.add("status-button")
         if(flag == 0){
             readBtn.textContent = "Not Read"
-            readBtn.style.backgroundColor = "rgba(219, 219, 37, 0.39)"
+            readBtn.style.backgroundColor = "rgba(219, 219, 37, 0.43)"
         }
         else{
             if(inputRead == "read"){
                 readBtn.textContent = "Read"
-                readBtn.style.backgroundColor = "rgba(64, 210, 64, 0.33)"
+                readBtn.style.backgroundColor = "rgba(64, 210, 64, 0.43)"
             }
             else if(inputRead == "not-read"){
                 readBtn.textContent = "Not Read"
-                readBtn.style.backgroundColor = "rgba(219, 219, 37, 0.39)"
+                readBtn.style.backgroundColor = "rgba(219, 219, 37, 0.43)"
             }
         }
         readBtn.addEventListener("click", () => toggleStatus(bookTitle.textContent.replaceAll(" ","-")))
         const removeButton = document.createElement("button")
         removeButton.textContent = "Remove"
         removeButton.classList.add("book-button")
+        removeButton.classList.add("remove-button")
         removeButton.style.backgroundColor = "rgba(239, 27, 27, 0.33)";
 
-        removeButton.addEventListener("click", () => removeBook(book))
+        removeButton.addEventListener("click", () => removeBook(bookTitle.textContent.replaceAll(" ","-")))
 
         //putting the new book tile on the BOOKGRID
         bookGrid.appendChild(book)
@@ -182,5 +184,13 @@ function toggleStatus(inputTitle){
             book.read = "read"
         }
     }
+}
+
+
+function removeBook(title){
+    const book = document.querySelector("." + title)
+    bookGrid.removeChild(book)
+    count = count - 1;
+    myLibrary = myLibrary.filter((book) => book.title != title.replaceAll("-"," "))
     console.log(myLibrary)
 }

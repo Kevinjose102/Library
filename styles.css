@@ -29,9 +29,6 @@ body{
     background-color: rgb(40, 40, 40);
     color: rgb(230, 230, 230);
 }
-h2{
-    text-shadow: 7px 7px rgb(0, 0, 0);
-}
 .svg{
     transform: scale(0.6);
     transition: all ease-in-out 0.17s;
@@ -61,7 +58,7 @@ dialog[open] > div > input {
     outline: none;
     border: none;
     padding: 15px;
-    font-size: 20px;
+    font-size: 25px;
     background-color: rgba(210, 210, 210, 0.22);
     border-radius: 10px;
 }
@@ -73,7 +70,7 @@ dialog[open] > div > input {
 }
 .toggle-buttons > button{
     border: none;
-    font-size: 20px;
+    font-size: 25px;
     transition: all ease-in-out 0.14s;
     padding: 15px;
     border-radius: 10px;
@@ -81,43 +78,47 @@ dialog[open] > div > input {
 }
 .toggle-buttons > button:hover{
     cursor: pointer;
+    background-color: rgba(219, 219, 37, 0.32);
 }
 .toggle-button.active{
+    background-color: rgba(219, 219, 37, 0.467);
+}
+.toggle-button.active:hover{
     background-color: rgba(219, 219, 37, 0.467);
 }
 .submit{
     outline: none;
     border: none;
     padding: 15px;
-    font-size: 20px;
+    font-size: 25px;
     background-color: rgba(210, 210, 210, 0.22);
     border-radius: 10px;
     border: none;
-    font-size: 20px;
     transition: all ease-in-out 0.14s;
     background-color: rgba(64, 210, 64, 0.33);
 }
 .submit:hover{
     cursor: pointer;
-    background-color: rgba(64, 210, 64, 0.434);
+    background-color: rgba(64, 210, 64, 0.503);
 }
 .cancel{
     border: none;
     padding: 15px;
-    font-size: 20px;
+    font-size: 25px;
     border-radius: 10px;
     transition: all ease-in-out 0.14s;
     background-color: rgba(239, 27, 27, 0.33);
 }
 .cancel:hover{
     cursor: pointer;
-    background-color: rgba(239, 27, 27, 0.434);
+    background-color: rgba(239, 27, 27, 0.503);
 }
 .button{
     height: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 }
 .error{
     color: red;
@@ -144,15 +145,20 @@ dialog[open] > div > input {
     scrollbar-width: none;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
     padding: 30px;
+    padding-top: 0;
 }
-
+.books > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .book{
     background-color: rgba(215, 215, 215, 0.609);
-    min-height: 300px;
-    max-width: 300px;
+    min-height: 350px;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -163,28 +169,29 @@ dialog[open] > div > input {
     font-size: 26px;
     font-family: "Merriweather Sans";
 }
-
+.book:hover{
+    border: 3px solid rgba(165, 165, 165, 0.371);
+    cursor: pointer;
+}
 .book > div{
     color: black;
 }
 
 .book-button{
-    padding: 5px;
+    padding: 7px;
     width: 90%;
     border: none;
     font-size: 26px;
     font-family: "Merriweather Sans";
     border-radius: 10px;
 }
-
 .book-button:hover{
+    box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
     cursor: pointer;
 }
 
 .book-title{
-    width: 90%;
     text-align: center;
-    padding: 7px;
     border-radius: 10px;
 }
 
